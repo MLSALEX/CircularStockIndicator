@@ -1,14 +1,10 @@
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexmls.circularstocktracker.domain.ProductRepository
-import com.alexmls.circularstocktracker.presentation.ProductEvent
 import com.alexmls.circularstocktracker.presentation.util.mapStockToProgress
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -33,8 +29,6 @@ class ProductViewModel(
             started = SharingStarted.WhileSubscribed(5_000L),
             initialValue = ProductState()
         )
-    private val _event = MutableSharedFlow<ProductEvent>()
-    val event = _event.asSharedFlow()
 
     fun onAction(action: ProductAction) {
         when (action) {
@@ -68,7 +62,6 @@ class ProductViewModel(
 
             if (current.stockLeft <= 0) {
                 _state.update { it.copy(stockLeft = 0) }
-                _event.emit(ProductEvent.ShowToast("Already out of stock"))
                 return@launch
             }
 
@@ -85,10 +78,6 @@ class ProductViewModel(
                     stockLeft = clampedStock,
                     progress = newProgress
                 )
-            }
-
-            if (clampedStock == 0) {
-                _event.emit(ProductEvent.ShowToast("Out of stock"))
             }
         }
     }
