@@ -2,14 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 
 android {
-    namespace = "com.alexmls.circularstocktracker"
+    namespace = "com.alexmls.minichallenges"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.alexmls.circularstocktracker"
+        applicationId = "com.alexmls.minichallenges"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -60,4 +61,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.lifecycle.runtime.compose)
+
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 }
