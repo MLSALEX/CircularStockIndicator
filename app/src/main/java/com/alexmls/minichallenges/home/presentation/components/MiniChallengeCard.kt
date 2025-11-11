@@ -55,7 +55,6 @@ fun MiniChallengeCard(
             modifier = Modifier
                 .width(100.dp)
                 .height(130.dp)
-                // внешние тени
                 .dropShadow(
                     shape = cardShape,
                     shadow = Shadow(
@@ -74,7 +73,6 @@ fun MiniChallengeCard(
                         offset = DpOffset(x = 0.dp, y = 5.dp)
                     )
                 )
-                // тело карточки
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
@@ -110,7 +108,6 @@ fun MiniChallengeCard(
                 .clip(cardShape)
                 .clickable(onClick = onClick)
         ) {
-            // 1) Фон: та же картинка, увеличенная и размытая
             Image(
                 painter = imagePainter,
                 contentDescription = null,
@@ -122,18 +119,18 @@ fun MiniChallengeCard(
                         translationX = -6f,
                         translationY = -4f
                     )
-                    .blur(8.dp)                     // размытие
-                    .alpha(0.9f),                    // чуть приглушить
+                    .blur(8.dp)
+                    .alpha(0.9f),
                 contentScale = ContentScale.Crop
             )
 
-            // 2) «стеклянное» окно с нормальной картинкой
+
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(8.dp)
                     .clip(cardShape)
-                    .background(Color.White.copy(alpha = 0.1f))  // лёгкий матовый слой
+                    .background(Color.White.copy(alpha = 0.1f))
             ) {
                 Image(
                     painter = imagePainter,

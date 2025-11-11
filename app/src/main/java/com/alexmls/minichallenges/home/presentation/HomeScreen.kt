@@ -1,8 +1,6 @@
 package com.alexmls.minichallenges.home.presentation
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,9 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -26,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alexmls.minichallenges.R
+import com.alexmls.minichallenges.core.designsystem.HomeBackground
 import com.alexmls.minichallenges.home.domain.model.MiniChallengeDescriptor
 import com.alexmls.minichallenges.home.domain.model.MiniChallengeId
 import com.alexmls.minichallenges.home.domain.model.MiniChallengeMonth
@@ -51,7 +47,7 @@ fun HomeScreen(
     onChallengeClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    MiniChallengesBackground(
+    HomeBackground(
         modifier = Modifier.fillMaxSize()
     ) {
         Column(
@@ -85,52 +81,6 @@ fun HomeScreen(
                 }
             }
         }
-    }
-}
-
-@Composable
-fun MiniChallengesBackground(
-    modifier: Modifier = Modifier,
-    content: @Composable BoxScope.() -> Unit
-) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .drawBehind {
-                val linear = Brush.linearGradient(
-                    colorStops = arrayOf(
-                        0.0f  to Color(0xFFFF8AB8),
-                        0.20f to Color(0xFFF6B6FF),
-                        0.35f to Color(0xFFC7A4FF),
-                        0.70f to Color(0xFF7BD5FF),
-                        0.85f to Color(0xFF70F0D5),
-                        1.00f to Color(0xFFFFE6A3),
-                    ),
-                    start = Offset(-0.25f * size.width, -0.1f * size.height),
-                    end   = Offset(1.1f * size.width, 1.1f * size.height)
-                )
-
-                drawRect(
-                    brush = linear,
-                    size = size
-                )
-
-                val radial = Brush.radialGradient(
-                    colors = listOf(
-                        Color.White.copy(alpha = 0.30f),
-                        Color.Transparent
-                    ),
-                    center = Offset(size.width * 0.6f, size.height * 0.3f),
-                    radius = size.maxDimension * 0.7f
-                )
-
-                drawRect(
-                    brush = radial,
-                    size = size
-                )
-            }
-    ) {
-        content()
     }
 }
 

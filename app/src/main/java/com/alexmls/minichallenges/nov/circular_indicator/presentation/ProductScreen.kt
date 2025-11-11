@@ -37,10 +37,10 @@ import com.alexmls.minichallenges.R
 import com.alexmls.minichallenges.circular_indicator.domain.Product
 import com.alexmls.minichallenges.circular_indicator.presentation.components.CircularStockIndicator
 import com.alexmls.minichallenges.circular_indicator.presentation.components.ProductSizeSection
-import com.alexmls.minichallenges.circular_indicator.presentation.util.mapStockToProgress
-import com.alexmls.minichallenges.circular_indicator.presentation.theme.AppColors
-import com.alexmls.minichallenges.circular_indicator.presentation.theme.MiniChallengesTheme
+import com.alexmls.minichallenges.circular_indicator.presentation.theme.CiColors
+import com.alexmls.minichallenges.circular_indicator.presentation.theme.CircularIndicatorTheme
 import com.alexmls.minichallenges.circular_indicator.presentation.theme.titleLargeBold
+import com.alexmls.minichallenges.circular_indicator.presentation.util.mapStockToProgress
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -49,10 +49,12 @@ fun ProductRoot(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    ProductScreen(
-        state = state,
-        onAction = viewModel::onAction
-    )
+    CircularIndicatorTheme {
+        ProductScreen(
+            state = state,
+            onAction = viewModel::onAction
+        )
+    }
 }
 
 @Composable
@@ -84,7 +86,7 @@ fun ProductScreen(
             )
         )
     } else {
-        AppColors.DiscountGradient
+        CiColors.DiscountGradient
     }
 
     Column(
@@ -223,7 +225,7 @@ fun ProductScreen(
 @Preview(showBackground = true)
 @Composable
 private fun ProductScreenPreview() {
-    MiniChallengesTheme {
+    CircularIndicatorTheme {
         val demoProduct = Product(
             name = "Nike Air Zoom Pegasus 41",
             description = "Legendary running shoes with Air Zoom technology and ReactX cushioning for daily training and marathons.",

@@ -8,6 +8,6 @@ import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 val circularIndicatorModule = module {
-    single<ProductRepository> { ProductRepositoryImpl() }
+    factory<ProductRepository> { ProductRepositoryImpl() }
     viewModelOf (::ProductViewModel)
 }

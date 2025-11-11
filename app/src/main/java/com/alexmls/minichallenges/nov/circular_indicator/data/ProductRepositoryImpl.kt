@@ -20,10 +20,16 @@ class ProductRepositoryImpl : ProductRepository {
     }
 
     override suspend fun decreaseStock(): Int {
-        if (stockLeft > 0) {
-            delay(300)
-            stockLeft -= 1
+        if (stockLeft <= 0) {
+            stockLeft = 0
+            return stockLeft
         }
+
+        delay(300)
+        stockLeft -= 1
+
+        if (stockLeft < 0) stockLeft = 0
+
         return stockLeft
     }
 

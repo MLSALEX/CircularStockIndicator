@@ -5,22 +5,22 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
 private val LightColorScheme = lightColorScheme(
-    background = BG,
-    surface = Surface,
-    outline = Outline,
-    primary = Discount,
-    onPrimary = TextAlt,
-    secondary = TextSecondary,
-    onSecondary = TextAlt,
-    secondaryContainer = TextDisabled,
-    error = Discount,
-    onError = TextAlt,
-    onBackground = TextPrimary,
-    onSurface = TextPrimary,
+    background = CI_BG,
+    surface = CI_Surface,
+    outline = CI_Outline,
+    primary = CI_Discount,
+    onPrimary = CI_TextAlt,
+    secondary = CI_TextSecondary,
+    onSecondary = CI_TextAlt,
+    secondaryContainer = CI_TextDisabled,
+    error = CI_Discount,
+    onError = CI_TextAlt,
+    onBackground = CI_TextPrimary,
+    onSurface = CI_TextPrimary,
 )
 
 @Composable
-fun MiniChallengesTheme(
+fun CircularIndicatorTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
